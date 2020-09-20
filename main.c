@@ -9,6 +9,7 @@
 #include "history.h"
 #include "nightswatch.h"
 #include "handle_env.h"
+#include "manage_jobs.h"
 #define ll long long
 ll k = 1;
 size_t sz = 1010;
@@ -111,6 +112,12 @@ void call_command(char *stringy)
             ii++;
             continue;
         }
+        else if (strcmp(command, "jobs") == 0)
+        {
+            print_jobs(argument);
+            ii++;
+            continue;
+        }
         else if (strcmp(command, "unsetenv") == 0)
         {
             unset_env_var(argument);
@@ -127,6 +134,7 @@ void call_command(char *stringy)
 }
 int main()
 {
+    total_back_process = 0;
     getcwd(home, sz - 5);
     strcpy(hist_filename, home);
     strcat(hist_filename, "/history_store.txt");

@@ -4,4 +4,5 @@ void print_err(char *);
 void print_status(char *);
 void run(char *, int);
 void end(int);
+void manage_pid_arr(int);
 #endif

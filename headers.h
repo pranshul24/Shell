@@ -25,3 +25,6 @@ char home[10005];
 long long no, back_g, hist_cnt;
 char hist_filename[1000];
 char hist[22][500];
+int total_back_process;
+char process_name[35000][45];
+int pid_arr[35000];

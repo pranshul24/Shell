@@ -1,8 +1,7 @@
 #include "headers.h"
 #include "run.h"
 #include "prompt.h"
-char process_name[35000][35];
-int total_back_process = 0;
+
 char err_string[200], stat_string[200];
 void print_err(char *str)
 {
@@ -11,6 +10,21 @@ void print_err(char *str)
 void print_status(char *str2)
 {
     fprintf(stderr, "%s", str2);
+}
+void manage_pid_arr(int rempid)
+{
+    int i;
+    for (i = 0; i < total_back_process; i++)
+    {
+        if (pid_arr[i] == rempid)
+        {
+            break;
+        }
+    }
+    for (int j = i; j < total_back_process - 1; j++)
+    {
+        pid_arr[j] = pid_arr[j + 1];
+    }
 }
 void end(int sig_num)
 {
@@ -32,6 +46,7 @@ void end(int sig_num)
             sprintf(stat_string, "\x1B[1;31m\n%s with pid %d exited abnormally !!!\n\x1B[0m", process_name[pid], pid);
             print_status(stat_string);
         }
+        manage_pid_arr(pid);
         total_back_process--;
     }
     prompt_stdout(home);
@@ -117,6 +132,7 @@ void run(char *args, int back_g)
         }
         else if (pid >= 1)
         {
+            pid_arr[total_back_process] = pid;
             total_back_process++;
             printf("\x1B[1;36m[%d] %d\x1B[0m\n", total_back_process, pid);
             strcpy(process_name[pid], arr_string4[0]);

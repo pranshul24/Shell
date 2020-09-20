@@ -1,20 +1,20 @@
+jobs
+emacs ls.c &
+jobs
+emacs &
+cd /proc/22285
+emacs &
+cd /proc/22533
+cat status
+q
+cd
 exit
-	setenv 	yu	kioi
-env
-unsetenv 	yu
-env
-setenv 	USER 	
-env
-unsetenv  	USER
-env
-	unsetenv
-  unsetenv USER 
-env
-unsetenv rrrrrr
-unsetenv           	
-unsetenv jkdsf         	hkj
-setenv pc la lal
-setenv pc pc
-env
-git add .
-exit
+emacs &
+jobs
+emqacs &
+emacs &
+jobs
+emacs &
+	emacs&
+emacs&
+jobs
