@@ -8,6 +8,7 @@
 #include "run.h"
 #include "history.h"
 #include "nightswatch.h"
+#include "handle_env.h"
 #define ll long long
 ll k = 1;
 size_t sz = 1010;
@@ -101,6 +102,18 @@ void call_command(char *stringy)
         else if (strcmp(command, "history") == 0)
         {
             history(argument);
+            ii++;
+            continue;
+        }
+        else if (strcmp(command, "setenv") == 0)
+        {
+            set_env_var(argument);
+            ii++;
+            continue;
+        }
+        else if (strcmp(command, "unsetenv") == 0)
+        {
+            unset_env_var(argument);
             ii++;
             continue;
         }
