@@ -97,9 +97,9 @@ void call_command(char *stringy)
             ii++;
             continue;
         }
-        else if (strcmp(command, "exit") == 0)
+        else if (strcmp(command, "quit") == 0)
         {
-            printf("\t\t\t\t\t\x1B[1;35mGoodBye ! Hopefully see you again in next assignment !\n\n");
+            printf("\n\t\t\t\t\t\x1B[1;35mGoodBye ! Hopefully see you again !\n\n");
             exit(0);
         }
         else if (strcmp(command, "history") == 0)
