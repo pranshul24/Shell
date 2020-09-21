@@ -1,10 +1,3 @@
-gedit &
-vim &
-emacs&
-kjob 	1 	18 	43
-kjob 	1 	18
-jobs
-kjob 	 1 19
 jobs
 kjobs 	1 	18
 kjob 		1 18
@@ -18,3 +11,10 @@ bg sdffs     1
 bg   dfgdf
 bg   1
 jobs
+gedit&
+emacs&
+jobs
+overkill
+overkill kfdgd
+overkill  6 
+exit
