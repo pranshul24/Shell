@@ -99,7 +99,11 @@ void kjob(char *argu)
                 }
                 else
                 {
-                    kill(pid_arr[jobn - 1], sign);
+                    int outc = kill(pid_arr[jobn - 1], sign);
+                    if (outc == -1)
+                    {
+                        perror("Errror ");
+                    }
                 }
             }
             else if (pt != NULL)
