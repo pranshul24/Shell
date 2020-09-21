@@ -33,7 +33,7 @@ char *status_proc(int pd)
         st1 = strtok(NULL, " \t");
         if (st1[0] == 'T')
             strcpy(process_status, "Stopped");
-        else
+        else if (st1[0] != 'T')
         {
             strcpy(process_status, "Running");
         }

@@ -72,12 +72,14 @@ void run(char *args, int back_g)
         ptr = strtok(NULL, " \t");
     }
     arr_string4[len] = NULL;
+    int flagc = 0;
     if (strcmp(arr_string4[len - 1], "&") == 0 || (arr_string4[len - 1][strlen(arr_string4[len - 1]) - 1] == '&'))
     {
         back_g = 1;
         if (strcmp(arr_string4[len - 1], "&") == 0)
         {
             arr_string4[len - 1] = NULL;
+            flagc = 1;
         }
         else
         {
@@ -135,7 +137,23 @@ void run(char *args, int back_g)
             pid_arr[total_back_process] = pid;
             total_back_process++;
             printf("\x1B[1;36m[%d] %d\x1B[0m\n", total_back_process, pid);
-            strcpy(process_name[pid], arr_string4[0]);
+            int i = 0;
+            if (len > 0)
+            {
+                strcpy(process_name[pid], arr_string4[i]);
+                i++;
+            }
+            while (i < len - 1)
+            {
+                strcat(process_name[pid], " ");
+                strcat(process_name[pid], arr_string4[i]);
+                i++;
+            }
+            if (flagc == 0 && len > 1)
+            {
+                strcat(process_name[pid], " ");
+                strcat(process_name[pid], arr_string4[i]);
+            }
             signal(SIGCHLD, end); // whenever a child finishes, SIGCHLD is
                                   //"automatically" delivered to the parent process
             return;

@@ -1,20 +1,20 @@
+   dsf&
+&
 jobs
-emacs ls.c &
-jobs
-emacs &
-cd /proc/22285
-emacs &
-cd /proc/22533
-cat status
-q
-cd
 exit
-emacs &
-jobs
-emqacs &
-emacs &
-jobs
-emacs &
-	emacs&
+emacs   &
 emacs&
 jobs
+emacs&
+emacs &
+emacs ls.h 	&
+jobs
+emacs&
+emacs &
+emacs ls.c   &
+emacs&
+emacs	ls.h&
+jobs
+emacs
+emacs&
+emacs ls.c &
