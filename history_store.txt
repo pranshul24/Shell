@@ -1,20 +1,20 @@
-kjob 1 dskslf
-jobs
-kjob dsfdsf 9
-jobs
-kjob 1 9
-jobs
-kjob 	1 9
-jobs
-kjob 1 9
-kjob 0 9
+gedit &
+vim &
 emacs&
-kjob 1 0
-kjon 1 sdkjfsd
-kjob 1 djskff
-emacs&
-kjob 1 fdgd
-kjob 1 0
-emacs &
-kjob 1 0
-kjob 1 sdff
+kjob 	1 	18 	43
+kjob 	1 	18
+jobs
+kjob 	 1 19
+jobs
+kjobs 	1 	18
+kjob 		1 18
+jobs
+kjob 	1 19
+jobs
+bg 2
+bg 0
+bg   1 erwr
+bg sdffs     1
+bg   dfgdf
+bg   1
+jobs

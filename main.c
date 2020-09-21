@@ -10,6 +10,7 @@
 #include "nightswatch.h"
 #include "handle_env.h"
 #include "manage_jobs.h"
+#include "bg.h"
 #define ll long long
 ll k = 1;
 size_t sz = 1010;
@@ -121,6 +122,12 @@ void call_command(char *stringy)
         else if (strcmp(command, "kjob") == 0)
         {
             kjob(argument);
+            ii++;
+            continue;
+        }
+        else if (strcmp(command, "bg") == 0)
+        {
+            bg(argument);
             ii++;
             continue;
         }
