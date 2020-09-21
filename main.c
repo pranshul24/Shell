@@ -118,6 +118,12 @@ void call_command(char *stringy)
             ii++;
             continue;
         }
+        else if (strcmp(command, "kjob") == 0)
+        {
+            kjob(argument);
+            ii++;
+            continue;
+        }
         else if (strcmp(command, "unsetenv") == 0)
         {
             unset_env_var(argument);

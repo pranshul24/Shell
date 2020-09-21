@@ -65,3 +65,48 @@ void print_jobs(char *argu)
         }
     }
 }
+void kjob(char *argu)
+{
+    char *pt = (char *)malloc(1000 * sizeof(char));
+    pt = strtok(argu, " \t");
+    if (pt == NULL)
+    {
+        printf("\x1B[1;31mError : enter arguments correctly !!!\x1B[0m\n");
+        return;
+    }
+    else if (pt != NULL)
+    {
+        char *job_num = (char *)malloc(100 * sizeof(char));
+        char *sig_num = (char *)malloc(100 * sizeof(char));
+        strcpy(job_num, pt);
+        pt = strtok(NULL, " \t");
+        if (pt == NULL)
+        {
+            printf("\x1B[1;31mError : enter arguments correctly !!!\x1B[0m\n");
+            return;
+        }
+        else if (pt != NULL)
+        {
+            strcpy(sig_num, pt);
+            pt = strtok(NULL, " \t");
+            if (pt == NULL)
+            {
+                int jobn = atoi(job_num), sign = atoi(sig_num);
+                if (jobn == 0 || jobn > total_back_process)
+                {
+                    printf("\x1B[1;31mError : enter job number correctly !!!\x1B[0m\n");
+                    return;
+                }
+                else
+                {
+                    kill(pid_arr[jobn - 1], sign);
+                }
+            }
+            else if (pt != NULL)
+            {
+                printf("\x1B[1;31mError : specify correct number of arguments for kjob command !!!\x1B[0m\n");
+                return;
+            }
+        }
+    }
+}

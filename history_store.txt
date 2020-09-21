@@ -1,20 +1,20 @@
-   dsf&
-&
 jobs
-exit
-emacs   &
-emacs&
-jobs
+kjob
 emacs&
 emacs &
-emacs ls.h 	&
+kjob
+kjob	 4
+kjob 1
+kjob   1  233
 jobs
-emacs&
-emacs &
-emacs ls.c   &
-emacs&
-emacs	ls.h&
+kjob 3 9
+kjob 0  9
+kjob dsf 9
+kjob 1 dskslf
 jobs
-emacs
-emacs&
-emacs ls.c &
+kjob dsfdsf 9
+jobs
+kjob 1 9
+jobs
+kjob 	1 9
+jobs
