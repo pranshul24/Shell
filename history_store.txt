@@ -1,20 +1,20 @@
-emacs &
-kjob 1 19
-fg 1
-emacs&
-jobs
-kjob 1 19
-jobs
-fg 1
-emacs&
-kjob 1 19
-jobs
-fg 1
-emacs &
-jobs
-kill 1 19
-jobs
-kjob 1 19
 jobs
 fg 1
 jobs
+cd -
+pwd
+cd ..
+cd -
+cd /
+cd -
+cd ../..
+cd -
+ls
+pwd
+cd /proc
+cd
+cd -
+cd ..
+cd -
+cd ~
+cd -

@@ -27,4 +27,5 @@ char hist_filename[1000];
 char hist[22][500];
 int total_back_process;
 char process_name[35000][50];
+char dirprev[2005], dirnow[2005];
 int pid_arr[35000];

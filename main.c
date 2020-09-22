@@ -163,6 +163,8 @@ int main()
 {
     total_back_process = 0;
     getcwd(home, sz - 5);
+    strcpy(dirprev, home);
+    strcpy(dirnow, home);
     strcpy(hist_filename, home);
     strcat(hist_filename, "/history_store.txt");
     hist_cnt = get_count_his();
