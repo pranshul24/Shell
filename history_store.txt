@@ -1,20 +1,20 @@
-kjob 	1 19
-jobs
-bg 2
-bg 0
-bg   1 erwr
-bg sdffs     1
-bg   dfgdf
-bg   1
-jobs
-gedit&
+emacs &
+kjob 1 19
+fg 1
 emacs&
 jobs
-overkill
-overkill kfdgd
-overkill  6 
-exit
-quit
-exit
-ls
-quit
+kjob 1 19
+jobs
+fg 1
+emacs&
+kjob 1 19
+jobs
+fg 1
+emacs &
+jobs
+kill 1 19
+jobs
+kjob 1 19
+jobs
+fg 1
+jobs

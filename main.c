@@ -12,6 +12,7 @@
 #include "manage_jobs.h"
 #include "bg.h"
 #include "overkill.h"
+#include "fg.h"
 #define ll long long
 ll k = 1;
 size_t sz = 1010;
@@ -129,6 +130,12 @@ void call_command(char *stringy)
         else if (strcmp(command, "bg") == 0)
         {
             bg(argument);
+            ii++;
+            continue;
+        }
+        else if (strcmp(command, "fg") == 0)
+        {
+            fg(argument);
             ii++;
             continue;
         }
