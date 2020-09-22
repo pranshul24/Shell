@@ -174,11 +174,18 @@ int main()
     {
         char *str = (char *)malloc(sz * sizeof(char));
         prompt_stdout(home);
-        getline(&str, &sz, stdin);
+        int ret = getline(&str, &sz, stdin);
+        if (ret == -1)
+        {
+            strcpy(str, "quit");
+            call_command(str);
+            break;
+        }
         str[strlen(str) - 1] = '\0';
         if (str != NULL)
         {
             call_command(str);
         }
     }
+    return 0;
 }

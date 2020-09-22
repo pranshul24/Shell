@@ -1,20 +1,20 @@
-cd ~
-cd -
-cd ..
-cd -
+fg 1
 cd
-cd -
-mkdir a
-cd a
-mkdir b
-cd b
+hjgj
+ls
+ð³¬
+4
+°³¬
+4
+quit
 cd ..
-cd -
+cd /
+quit
+cd ..
 cd
+pwd
 cd -
-cd /proc
-cd -
-cd ~/
-cd -
-exit
+quit
+ls
+cd ..
 quit
