@@ -1,5 +1,6 @@
 #include "headers.h"
 #include "changedir.h"
+#include "pinfo.h"
 ll sz3 = 1e4;
 void cd(char *argument)
 {
@@ -75,6 +76,7 @@ void cd(char *argument)
             }
             else
             {
+                modify2(cwdir);
                 printf("%s\n", cwdir);
             }
         }

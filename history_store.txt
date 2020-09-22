@@ -1,20 +1,20 @@
-jobs
-fg 1
-jobs
-cd -
-pwd
-cd ..
-cd -
-cd /
-cd -
-cd ../..
-cd -
-ls
-pwd
-cd /proc
-cd
-cd -
-cd ..
-cd -
 cd ~
 cd -
+cd ..
+cd -
+cd
+cd -
+mkdir a
+cd a
+mkdir b
+cd b
+cd ..
+cd -
+cd
+cd -
+cd /proc
+cd -
+cd ~/
+cd -
+exit
+quit
