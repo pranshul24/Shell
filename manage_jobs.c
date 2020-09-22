@@ -61,7 +61,7 @@ void print_jobs(char *argu)
         }
         else if (total_back_process == 0)
         {
-            printf("No background processes\n");
+            printf("\x1B[1;31mNo background processes\n\x1B[0m");
         }
     }
 }
