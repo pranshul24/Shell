@@ -113,7 +113,7 @@ void run(char *args, int back_g)
                     strcat(process_name[pid], " ");
                     strcat(process_name[pid], arr_string4[i]);
                 }
-                printf("\n[%d] %s with PID [%d] suspended\n", total_back_process + 1, process_name[pid], pid);
+                printf("\x1B[1;36m\n[%d] %s with PID [%d] suspended\n\x1B[0m", total_back_process + 1, process_name[pid], pid);
                 pid_arr[total_back_process] = pid;
                 total_back_process++;
             }

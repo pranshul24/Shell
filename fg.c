@@ -62,7 +62,7 @@ void fg(char *argu)
             signal(SIGTTIN, SIG_DFL);
             if (WIFSTOPPED(status))
             {
-                printf("[%d] %s with PID [%d] suspended\n", total_back_process + 1, process_name[pd], pd);
+                printf("\x1B[1;36m[%d] %s with PID [%d] suspended\n\x1B[0m", total_back_process + 1, process_name[pd], pd);
                 pid_arr[total_back_process] = pd;
                 total_back_process++;
             }

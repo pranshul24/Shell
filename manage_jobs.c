@@ -102,7 +102,7 @@ void kjob(char *argu)
                     int outc = kill(pid_arr[jobn - 1], sign);
                     if (outc == -1)
                     {
-                        perror("Errror ");
+                        perror("\x1B[1;31mErrror \x1B[0m");
                     }
                 }
             }
