@@ -1,20 +1,20 @@
-ls
-quit
-emacs
-pinfo
+jobs
+kjob 1 18
+jobs
+kjob 1 19
+jobs
+kjob 1 9
+jobs
 emacs&
-jobs
 overkill
-jobs
-emacs
-ls
-cd 
-cd ..
-emacs
 quit
-emacs
+fdsfd
+quit
 cd
-cd ..
 quit
 emacs
 quit
+emacs
+overkill
+quit
+ls ..

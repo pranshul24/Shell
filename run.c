@@ -92,6 +92,7 @@ void run(char *args, int back_g)
         pid_t pid = fork(), wpid;
         if (pid == 0) // for CHILD
         {
+            setpgid(0, 0);
             if (execvp(arr_string4[0], arr_string4) != 0)
             {
                 printf("\x1B[1;31mSorry!!! I don't know this command\n\x1B[0m");
@@ -111,7 +112,38 @@ void run(char *args, int back_g)
         else if (pid >= 1)
         {
             fg_pid = pid;
-            waitpid(pid, &status, 0);
+            signal(SIGTTOU, SIG_IGN);
+            signal(SIGTTIN, SIG_IGN);
+            tcsetpgrp(0, pid);
+            tcsetpgrp(1, pid);
+            waitpid(pid, &status, WUNTRACED);
+            tcsetpgrp(0, getpgid(spid));
+            tcsetpgrp(1, getpgid(spid));
+            signal(SIGTTOU, SIG_DFL);
+            signal(SIGTTIN, SIG_DFL);
+            if (WIFSTOPPED(status))
+            {
+                int i = 0;
+                if (len > 0)
+                {
+                    strcpy(process_name[pid], arr_string4[i]);
+                    i++;
+                }
+                while (i < len - 1)
+                {
+                    strcat(process_name[pid], " ");
+                    strcat(process_name[pid], arr_string4[i]);
+                    i++;
+                }
+                if (flagc == 0 && len > 1)
+                {
+                    strcat(process_name[pid], " ");
+                    strcat(process_name[pid], arr_string4[i]);
+                }
+                printf("[%d] %s with PID [%d] suspended\n", total_back_process + 1, process_name[pid], pid);
+                pid_arr[total_back_process] = pid;
+                total_back_process++;
+            }
             fg_pid = -1;
             return;
         }

@@ -30,6 +30,11 @@ long long sep(char *str)
     }
     return i;
 }
+void exit_fun()
+{
+    printf("\n\t\t\t\t\t\x1B[1;35mGoodBye ! Hopefully see you again !\n\n");
+    exit(0);
+}
 void call_command(char *stringy)
 {
     long long countsep = sep(stringy);
@@ -163,6 +168,7 @@ void call_command(char *stringy)
 int main()
 {
     spid = getpid();
+    fg_pid = -1;
     total_back_process = 0;
     getcwd(home, sz - 5);
     strcpy(dirprev, home);
@@ -181,8 +187,7 @@ int main()
         int ret = getline(&str, &sz, stdin);
         if (ret == -1)
         {
-            strcpy(str, "quit");
-            call_command(str);
+            exit_fun();
             break;
         }
         str[strlen(str) - 1] = '\0';
