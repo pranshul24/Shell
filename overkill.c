@@ -11,9 +11,17 @@ void kill_all_backg(char *argu)
     }
     else if (ptr == NULL)
     {
-        for (int i = 0; i < total_back_process; i++)
+        if (total_back_process == 0)
         {
-            kill(pid_arr[i], SIGKILL);
+            printf("\x1B[1;31mAlready no background process !!!\x1B[0m\n");
+            return;
+        }
+        else if (total_back_process >= 1)
+        {
+            for (int i = 0; i < total_back_process; i++)
+            {
+                kill(pid_arr[i], SIGKILL);
+            }
         }
     }
     return;
