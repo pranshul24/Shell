@@ -13,6 +13,7 @@
 #include "bg.h"
 #include "overkill.h"
 #include "fg.h"
+#include "manage_signal.h"
 #define ll long long
 ll k = 1;
 size_t sz = 1010;
@@ -161,6 +162,7 @@ void call_command(char *stringy)
 }
 int main()
 {
+    spid = getpid();
     total_back_process = 0;
     getcwd(home, sz - 5);
     strcpy(dirprev, home);
@@ -170,6 +172,8 @@ int main()
     hist_cnt = get_count_his();
     printf("\033[H\033[J");
     printf("\t\t\t\t\t\x1B[1;35mHey ! Welcome to PC's Shell !\n\n");
+    signal(SIGINT, exit_fg);
+    signal(SIGTSTP, to_bg);
     while (k)
     {
         char *str = (char *)malloc(sz * sizeof(char));

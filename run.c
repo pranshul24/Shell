@@ -110,7 +110,9 @@ void run(char *args, int back_g)
         }
         else if (pid >= 1)
         {
+            fg_pid = pid;
             waitpid(pid, &status, 0);
+            fg_pid = -1;
             return;
         }
     }

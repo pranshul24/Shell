@@ -1,20 +1,20 @@
-fg 1
-cd
-hjgj
 ls
-ð³¬
-4
-°³¬
-4
 quit
-cd ..
-cd /
-quit
-cd ..
-cd
-pwd
-cd -
-quit
+emacs
+pinfo
+emacs&
+jobs
+overkill
+jobs
+emacs
 ls
+cd 
 cd ..
+emacs
+quit
+emacs
+cd
+cd ..
+quit
+emacs
 quit
