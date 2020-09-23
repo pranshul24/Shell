@@ -1,20 +1,20 @@
+emacs
 jobs
-kjob 1 18
-jobs
-kjob 1 19
+emacs
 jobs
 kjob 1 9
 jobs
+overkill
+jobs
+fg 1
+jobs
+emacs
 emacs&
-overkill
-quit
-fdsfd
-quit
-cd
-quit
 emacs
-quit
-emacs
+jobs
 overkill
-quit
-ls ..
+jobs
+emacs
+fg 1
+jobs
+overkill

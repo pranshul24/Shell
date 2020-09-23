@@ -36,6 +36,9 @@ void fg(char *argu)
         else
         {
             pd = pid_arr[jobn - 1];
+            fg_pid = pd;
+            char *pname = (char *)malloc(1000 * sizeof(char));
+            strcpy(pname, process_name[pd]);
             int i;
             for (i = 0; i < total_back_process; i++)
             {
@@ -49,8 +52,21 @@ void fg(char *argu)
                 pid_arr[j] = pid_arr[j + 1];
             }
             total_back_process--;
+            signal(SIGTTOU, SIG_IGN);
+            signal(SIGTTIN, SIG_IGN);
+            tcsetpgrp(0, pd);
             kill(pd, SIGCONT);
             waitpid(pd, &status, WUNTRACED);
+            tcsetpgrp(0, getpgrp());
+            signal(SIGTTOU, SIG_DFL);
+            signal(SIGTTIN, SIG_DFL);
+            if (WIFSTOPPED(status))
+            {
+                printf("[%d] %s with PID [%d] suspended\n", total_back_process + 1, process_name[pd], pd);
+                pid_arr[total_back_process] = pd;
+                total_back_process++;
+            }
+            fg_pid = -1;
         }
     }
     return;

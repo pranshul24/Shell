@@ -180,6 +180,7 @@ int main()
     printf("\t\t\t\t\t\x1B[1;35mHey ! Welcome to PC's Shell !\n\n");
     signal(SIGINT, exit_fg);
     signal(SIGTSTP, to_bg);
+    signal(SIGCHLD, end);
     while (k)
     {
         char *str = (char *)malloc(sz * sizeof(char));

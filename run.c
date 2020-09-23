@@ -2,7 +2,7 @@
 #include "run.h"
 #include "prompt.h"
 
-char err_string[200], stat_string[200];
+char err_string[200];
 void print_err(char *str)
 {
     perror(str);
@@ -26,33 +26,7 @@ void manage_pid_arr(int rempid)
         pid_arr[j] = pid_arr[j + 1];
     }
 }
-void end(int sig_num)
-{
-    int loc;
-    pid_t pid = waitpid(-1, &loc, WNOHANG);
-    if (pid < 1)
-    {
-        return;
-    }
-    else if (pid >= 1)
-    {
-        if (WIFEXITED(loc) && WEXITSTATUS(loc) == 0)
-        {
-            sprintf(stat_string, "\x1B[1;32m\n%s with pid %d exited normally !!!\n\x1B[0m", process_name[pid], pid);
-            print_status(stat_string);
-        }
-        else
-        {
-            sprintf(stat_string, "\x1B[1;31m\n%s with pid %d exited abnormally !!!\n\x1B[0m", process_name[pid], pid);
-            print_status(stat_string);
-        }
-        manage_pid_arr(pid);
-        total_back_process--;
-    }
-    prompt_stdout(home);
-    fflush(stdout);
-    return;
-}
+
 void run(char *args, int back_g)
 {
     char *arr_string4[101];
@@ -114,11 +88,10 @@ void run(char *args, int back_g)
             fg_pid = pid;
             signal(SIGTTOU, SIG_IGN);
             signal(SIGTTIN, SIG_IGN);
+            setpgid(pid, 0);
             tcsetpgrp(0, pid);
-            tcsetpgrp(1, pid);
             waitpid(pid, &status, WUNTRACED);
-            tcsetpgrp(0, getpgid(spid));
-            tcsetpgrp(1, getpgid(spid));
+            tcsetpgrp(0, getpgrp());
             signal(SIGTTOU, SIG_DFL);
             signal(SIGTTIN, SIG_DFL);
             if (WIFSTOPPED(status))
@@ -140,7 +113,7 @@ void run(char *args, int back_g)
                     strcat(process_name[pid], " ");
                     strcat(process_name[pid], arr_string4[i]);
                 }
-                printf("[%d] %s with PID [%d] suspended\n", total_back_process + 1, process_name[pid], pid);
+                printf("\n[%d] %s with PID [%d] suspended\n", total_back_process + 1, process_name[pid], pid);
                 pid_arr[total_back_process] = pid;
                 total_back_process++;
             }
@@ -159,6 +132,7 @@ void run(char *args, int back_g)
         }
         else if (pid == 0) // for CHILD
         {
+            setpgid(0, 0);
             if (execvp(arr_string4[0], arr_string4) == -1)
             {
                 strcpy(err_string, "\x1B[1;31mCould not execute command\x1B[0m");
@@ -188,8 +162,9 @@ void run(char *args, int back_g)
                 strcat(process_name[pid], " ");
                 strcat(process_name[pid], arr_string4[i]);
             }
-            signal(SIGCHLD, end); // whenever a child finishes, SIGCHLD is
-                                  //"automatically" delivered to the parent process
+            setpgid(pid, 0);
+            tcsetpgrp(0, getpgrp());
+
             return;
         }
     }
