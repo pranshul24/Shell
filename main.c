@@ -14,10 +14,12 @@
 #include "overkill.h"
 #include "fg.h"
 #include "manage_signal.h"
+#include "io_redirection.h"
+#include "pipe.h"
+//#include "main.h"
 #define ll long long
 ll k = 1;
 size_t sz = 1010;
-char colonsep[100][1000];
 long long sep(char *str)
 {
     char *ptrs = strtok(str, ";");
@@ -35,9 +37,34 @@ void exit_fun()
     printf("\n\t\t\t\t\t\x1B[1;35mGoodBye ! Hopefully see you again !\n\n");
     exit(0);
 }
-void call_command(char *stringy)
+int check_redirection(char *command)
 {
-    long long countsep = sep(stringy);
+    char *out = strstr(command, ">");
+    char *in = strstr(command, "<");
+
+    if ((out != NULL) && (in != NULL))
+        return 3;
+
+    else if (out != NULL)
+        return 2;
+
+    else if (in != NULL)
+        return 1;
+
+    else
+        return 0;
+}
+
+int check_piping(char *command)
+{
+    char *is_pipe = strstr(command, "|");
+    if (is_pipe != NULL)
+        return 1;
+    else
+        return 0;
+}
+void call_command(int countsep)
+{
     char *copy_ptr = (char *)malloc(sizeof(char) * 2000);
     char *copy_ptr2 = (char *)malloc(sizeof(char) * 2000);
     long long ii = 0;
@@ -67,6 +94,22 @@ void call_command(char *stringy)
             {
                 strcpy(argument, ptrs2);
             }
+        }
+        int pipe_or_redirect = 0;
+        if (check_piping(copy_ptr))
+        {
+            piping(copy_ptr);
+            pipe_or_redirect = 1;
+        }
+        if (check_redirection(copy_ptr))
+        {
+            redirection(copy_ptr);
+            pipe_or_redirect = 1;
+        }
+        if (pipe_or_redirect == 1)
+        {
+            ii++;
+            continue;
         }
         if (strcmp(command, "cd") == 0)
         {
@@ -194,7 +237,8 @@ int main()
         str[strlen(str) - 1] = '\0';
         if (str != NULL)
         {
-            call_command(str);
+            int countsep = sep(str);
+            call_command(countsep);
         }
     }
     return 0;

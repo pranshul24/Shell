@@ -31,3 +31,5 @@ char dirprev[2005], dirnow[2005];
 int pid_arr[35000];
 int fg_pid;
 int spid;
+char colonsep[100][1000];
+char pipe_args[100][1000];
