@@ -105,16 +105,13 @@ void call_command(int countsep, int if_pipe)
         int pipe_or_redirect = 0;
         if (check_piping(copy_ptr3))
         {
-            pipe_or_redirect = 1;
             piping(copy_ptr3);
+            ii++;
+            continue;
         }
         if (check_redirection(copy_ptr3))
         {
-            pipe_or_redirect = 1;
             redirection(copy_ptr3);
-        }
-        if (pipe_or_redirect == 1)
-        {
             ii++;
             continue;
         }

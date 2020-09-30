@@ -1,5 +1,6 @@
 #include "headers.h"
 #include "io_redirection.h"
+#include "main.h"
 int isfile(char *path)
 {
     struct stat f;
@@ -11,6 +12,7 @@ int isfile(char *path)
 
 void redirection(char *command)
 {
+
     int saved_stdout = dup(STDOUT_FILENO);
     int saved_stdin = dup(STDIN_FILENO);
     int status;
@@ -72,7 +74,8 @@ void redirection(char *command)
             return;
         }
     }
-
+    char *send = (char *)malloc(1000 * sizeof(char));
+    strcpy(send, input[0]);
     input[0] = strtok(input[0], " \n\r\t");
 
     while (input[0] != NULL)
@@ -135,14 +138,9 @@ void redirection(char *command)
             dup2(fd_out, 1);
             close(fd_out);
         }
-
-        if (execvp(args[0], args) < 0)
-        {
-            perror("Command not found");
-            prestat = 'f';
-            exit(EXIT_FAILURE);
-        }
-
+        int y = 0;
+        strcpy(colonsep[y], send);
+        call_command(1, 0);
         dup2(saved_stdin, 0);
         close(saved_stdin);
 
@@ -154,7 +152,4 @@ void redirection(char *command)
     {
         waitpid(pid, &status, 0);
     }
-    for (int j = 0; j < no_args; j++)
-        free(args[j]);
-    free(args);
 }

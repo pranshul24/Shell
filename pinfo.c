@@ -111,11 +111,11 @@ void pinfo(char *process_id)
         char *st1 = strtok(process_status, ":");
         st1 = strtok(NULL, " \t");
         char *exepath = (char *)malloc(sizeof(char) * 1005);
-        printf("\x1B[1;35mPid -- \x1B[0;32m%d\n", pid);
-        printf("\x1B[1;35mProcess Status -- \x1B[0;32m%s\n", st1);
+        printf("Pid -- %d\n", pid);
+        printf("Process Status -- %s\n", st1);
         char *st2 = strtok(virtual_memory, "\t");
         st2 = strtok(NULL, " \t");
-        printf("\x1B[1;35mMemory -- \x1B[0;32m%s\n", st2);
+        printf("Memory -- %s\n", st2);
         long long ret = readlink(exe_file, exepath, 1000);
         if (ret == -1)
         {
@@ -126,7 +126,7 @@ void pinfo(char *process_id)
         {
             exepath[ret] = '\0';
             modify2(exepath);
-            printf("\x1B[1;35mExecutable path -- \x1B[0;32m%s\n\x1B[0m", exepath);
+            printf("Executable path -- %s\n", exepath);
         }
     }
 }

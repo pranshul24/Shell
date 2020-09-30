@@ -1,20 +1,20 @@
+pinfo 34
+pinfo > a.txt
+pinfo >> a.txt
+ls .. >> a.txt
+ls ../.. -l > a.txt
+ls ../.. -l 
+ls -l --color=always > a.txt
+ls > a.txt
+cd > a.txt
+cd - > a.txt
+cd /
 cd
-pwd
-pinfo dfg
-ls 
- pwd 23323 
- emacs
-emacs
-ls 
- pwd fdf
- emacs
-ls 
- cd ... 
- pinfo
-ls | wc
-ls | wc| wc
-ls | wc|ds
-ls | ds
-lss | wc
-ls | ds | wc
-ls | ds
+cd - > a.txt
+pinfo
+emacs &
+pinfo 12270
+pinfo 12270 > a.txt
+pinfo 12270 
+cat < ls.h | wc -l > a.txt
+grep o 
