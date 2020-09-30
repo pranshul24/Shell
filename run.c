@@ -119,9 +119,16 @@ void run(char *args, int back_g)
                 prestat = 'f';
                 pid_arr[total_back_process] = pid;
                 total_back_process++;
-                prestat = 'f';
             }
             fg_pid = -1;
+            if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
+            {
+                return;
+            }
+            else
+            {
+                prestat = 'f';
+            }
             return;
         }
     }

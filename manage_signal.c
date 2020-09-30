@@ -50,6 +50,7 @@ void end(int sig_num)
         else
         {
             sprintf(stat_string, "\x1B[1;31m\n%s with pid %d exited abnormally !!!\n\x1B[0m", process_name[pid], pid);
+            prestat = 'f';
             print_status(stat_string);
         }
         manage_pid_arr(pid);

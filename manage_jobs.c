@@ -14,7 +14,6 @@ char *status_proc(int pd)
     {
         printf("\x1B[1;31mError opening file %s\x1B[0m\n", status_file);
         prestat = 'f';
-        return;
     }
     else if (fileptr != NULL)
     {
