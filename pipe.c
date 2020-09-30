@@ -37,6 +37,7 @@ int piping(char *command)
         else if (newproc <= -1)
         {
             perror("Could not create child.");
+            prestat = 'f';
             exit(1);
         }
         else

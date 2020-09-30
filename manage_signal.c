@@ -7,7 +7,10 @@ void exit_fg(int signum)
 {
     pid_t p = getpid();
     if (p < 0)
+    {
         perror("\x1B[1;31mError\x1B[0m");
+        prestat = 'f';
+    }
     else if (p != spid)
         return;
     if (fg_pid != -1)
@@ -19,7 +22,10 @@ void to_bg(int signum)
 {
     pid_t p = getpid();
     if (p < 0)
+    {
+        prestat = 'f';
         perror("\x1B[1;31mError\x1B[0m");
+    }
     else if (p != spid)
         return;
     if (fg_pid != -1)

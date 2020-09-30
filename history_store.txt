@@ -1,20 +1,20 @@
-ls |w c
-ls | wc
-cd
-lss | wc
-lss | xargs cat
-lss |
-lss
-lss |
-ls |
-ls ..
-ls 
-ls   
-ls |
+cd test_dirr
+cd test_dir
 ls
-cd
-ls
+./a.out < a.txt
+./a.out
+jobs
+overkill
 pinfo
-pinfo 2323
-pinfo yo
-ps -Q
+pinfo < a.txt
+pinfo > a.txt
+ls > a.txt
+pinfo > a.txt
+cat ls.h > a.txt
+cat ../ls.h > a.txt
+cat ../ls.h >> a.txt
+pinfo > a.txt
+ls ... .
+emm
+ls > a.txt
+pinfo > a.txt

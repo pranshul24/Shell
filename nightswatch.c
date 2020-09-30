@@ -7,6 +7,7 @@ char *if_interrupt(char *file)
     sprintf(send_if_fail, "Sorry can't open the required file -> %s\n", file);
     if (fptr3 == NULL)
     {
+        prestat = 'f';
         return send_if_fail;
     }
     else if (fptr3 != NULL)
@@ -65,6 +66,8 @@ void nwatch(char *str)
         else
         {
             printf("\x1B[1;31mPlease enter the valid arguments for nightswatch!!!\x1B[0m\n");
+            prestat = 'f';
+
             return;
         }
     }
@@ -74,17 +77,20 @@ void nwatch(char *str)
         after_sec = atoi(arr_string5[1]);
         if (after_sec == 0)
         {
+            prestat = 'f';
             printf("\x1B[1;31mInappropriate seconds specified !!! Should be a natural number \x1B[0m\n");
             f = 1;
         }
         if (strcmp("-n", arr_string5[0]) != 0)
         {
             printf("\x1B[1;31m%s is not a valid option !!! \x1B[0m\n", arr_string5[0]);
+            prestat = 'f';
             f = 1;
         }
         if (strcmp("interrupt", arr_string5[2]) != 0)
         {
             printf("\x1B[1;31m%s is not a valid argument for nightswatch!!! Do you mean <interrupt> ? \x1B[0m\n", arr_string5[2]);
+            prestat = 'f';
             f = 1;
         }
         if (f == 1)
@@ -94,6 +100,7 @@ void nwatch(char *str)
     }
     else
     {
+        prestat = 'f';
         printf("\x1B[1;31mPlease mention the arguments !!!\n\x1B[0m");
         return;
     }
@@ -102,6 +109,7 @@ void nwatch(char *str)
     if (interrupt_file == NULL)
     {
         printf("\x1B[1;31mSorry can't open the file needed to read interrupt count!!!\n\x1B[0m");
+        prestat = 'f';
         return;
     }
     else if (interrupt_file != NULL)
@@ -125,6 +133,7 @@ void nwatch(char *str)
         if (output_select == -1)
         {
             perror("Error ");
+            prestat = 'f';
         }
         else if (output_select > 0)
         {

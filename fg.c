@@ -24,6 +24,7 @@ void fg(char *argu)
     if (k == 0 || k > 1)
     {
         printf("\x1B[1;31mError : enter arguments correctly !!!\x1B[0m\n");
+        prestat = 'f';
         return;
     }
     else if (k == 1)
@@ -31,6 +32,7 @@ void fg(char *argu)
         if (jobn == 0 || jobn > total_back_process)
         {
             printf("\x1B[1;31mError : enter job number correctly !!!\x1B[0m\n");
+            prestat = 'f';
             return;
         }
         else
@@ -65,6 +67,7 @@ void fg(char *argu)
                 printf("\x1B[1;36m[%d] %s with PID [%d] suspended\n\x1B[0m", total_back_process + 1, process_name[pd], pd);
                 pid_arr[total_back_process] = pd;
                 total_back_process++;
+                prestat = 'f';
             }
             fg_pid = -1;
         }

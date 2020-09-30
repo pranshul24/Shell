@@ -70,6 +70,7 @@ void run(char *args, int back_g)
             if (execvp(arr_string4[0], arr_string4) != 0)
             {
                 printf("\x1B[1;31mSorry!!! I don't know this command\n\x1B[0m");
+                prestat = 'f';
                 exit(1);
             }
             else
@@ -80,6 +81,7 @@ void run(char *args, int back_g)
         else if (pid == -1)
         {
             strcpy(err_string, "\x1B[1;31mSorry !!! :\x1B[0m");
+            prestat = 'f';
             print_err(err_string);
             return;
         }
@@ -114,8 +116,10 @@ void run(char *args, int back_g)
                     strcat(process_name[pid], arr_string4[i]);
                 }
                 printf("\x1B[1;36m\n[%d] %s with PID [%d] suspended\n\x1B[0m", total_back_process + 1, process_name[pid], pid);
+                prestat = 'f';
                 pid_arr[total_back_process] = pid;
                 total_back_process++;
+                prestat = 'f';
             }
             fg_pid = -1;
             return;
@@ -128,6 +132,7 @@ void run(char *args, int back_g)
         {
             strcpy(err_string, "\x1B[1;31mError \x1B[0m");
             print_err(err_string);
+            prestat = 'f';
             exit(1);
         }
         else if (pid == 0) // for CHILD
@@ -164,7 +169,6 @@ void run(char *args, int back_g)
             }
             setpgid(pid, 0);
             tcsetpgrp(0, getpgrp());
-
             return;
         }
     }

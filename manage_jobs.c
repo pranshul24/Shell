@@ -12,8 +12,9 @@ char *status_proc(int pd)
     FILE *fileptr = fopen(status_file, "r");
     if (fileptr == NULL)
     {
-        return "perror";
+        printf("\x1B[1;31mError opening file %s\x1B[0m\n", status_file);
         prestat = 'f';
+        return;
     }
     else if (fileptr != NULL)
     {
@@ -63,8 +64,7 @@ void print_jobs(char *argu)
         }
         else if (total_back_process == 0)
         {
-            printf("\x1B[1;31mNo background processes\n\x1B[0m");
-            prestat = 'f';
+            printf("\x1B[1;35mNo background processes\n\x1B[0m");
         }
     }
 }

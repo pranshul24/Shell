@@ -7,6 +7,7 @@ void kill_all_backg(char *argu)
     if (ptr != NULL)
     {
         printf("\x1B[1;31mError : can't enter arguments with overkill command !!!\x1B[0m\n");
+        prestat = 'f';
         return;
     }
     else if (ptr == NULL)

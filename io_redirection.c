@@ -59,6 +59,7 @@ void redirection(char *command)
         if (input[1] == NULL)
         {
             printf("Specify file name for input\n");
+            prestat = 'f';
             return;
         }
 
@@ -67,6 +68,7 @@ void redirection(char *command)
         if (!isfile(in_file))
         {
             printf("File does not exist\n");
+            prestat = 'f';
             return;
         }
     }
@@ -88,16 +90,16 @@ void redirection(char *command)
         if (out_file == NULL)
         {
             printf("Enter output file\n");
+            prestat = 'f';
             return;
         }
-
-        //printf("%s %d\n", out_file, out_type);
     }
 
     pid_t pid = fork();
     if (pid < 0)
     {
         perror("Error in forking");
+        prestat = 'f';
         return;
     }
 
@@ -109,6 +111,7 @@ void redirection(char *command)
             if (fd_in < 0)
             {
                 perror("Input redirection");
+                prestat = 'f';
                 return;
             }
 
@@ -121,16 +124,14 @@ void redirection(char *command)
             int fd_out;
             if (out_type == 1)
                 fd_out = open(out_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-
             else if (out_type == 2)
                 fd_out = open(out_file, O_WRONLY | O_CREAT | O_APPEND, 0644);
-
             if (fd_out < 0)
             {
                 perror("Output Redirection");
+                prestat = 'f';
                 return;
             }
-
             dup2(fd_out, 1);
             close(fd_out);
         }
@@ -138,6 +139,7 @@ void redirection(char *command)
         if (execvp(args[0], args) < 0)
         {
             perror("Command not found");
+            prestat = 'f';
             exit(EXIT_FAILURE);
         }
 

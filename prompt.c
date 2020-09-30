@@ -53,6 +53,7 @@ void prompt_stdout(char *home)
     {
         //Error
         printf("\x1B[1;31mError getting the host name\n\x1B[0m");
+        prestat = 'f';
         return;
     }
     else
@@ -61,6 +62,7 @@ void prompt_stdout(char *home)
         {
             //Error
             printf("\x1B[1;31mError getting the username\n\x1B[0m");
+            prestat = 'f';
             return;
         }
         else
@@ -69,6 +71,7 @@ void prompt_stdout(char *home)
             {
                 //Error
                 printf("\x1B[1;31mError getting the current working directory\n\x1B[0m");
+                prestat = 'f';
                 return;
             }
             else
