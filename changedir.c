@@ -19,6 +19,7 @@ void cd(char *argument)
         if (var != NULL)
         {
             printf("\x1B[1;31mEnter 1 argument at max!!!\n\x1B[0m");
+            prestat = 'f';
             return;
         }
         else
@@ -57,6 +58,7 @@ void cd(char *argument)
     if (flag == -1)
     {
         perror("\x1B[1;31mError \x1B[0m");
+        prestat = 'f';
     }
     else
     {
@@ -72,6 +74,7 @@ void cd(char *argument)
             if (cwdir == NULL)
             {
                 printf("\x1B[1;31mError getting the directory path\n\x1B[0m");
+                prestat = 'f';
                 return;
             }
             else

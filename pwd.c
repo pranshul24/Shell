@@ -18,6 +18,8 @@ void pwd(char *tempor)
     if (pt != NULL)
     {
         printf("\x1B[1;31mCan't pass arguments to pwd!!!\x1B[0m\n");
+        prestat = 'f';
+
         return;
     }
     char *curworkdir = (char *)malloc(sizeof(char) * sz);
@@ -26,6 +28,8 @@ void pwd(char *tempor)
     {
         //Error
         printf("\x1B[1;31mError getting the current working directory\n\x1B[0m");
+        prestat = 'f';
+
         return;
     }
     else

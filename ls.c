@@ -113,6 +113,7 @@ void list_with_l(char *temdir2, ll hidden)
     if (directory == NULL)
     {
         printf("\x1B[1;31mError: Unable to read directory or directory does not exist\n\x1B[0m");
+        prestat = 'f';
         return;
     }
     struct dirent *file_or_subdir;
@@ -148,6 +149,7 @@ void list(char *temdir, ll hidden, ll detail)
     if (directory == NULL)
     {
         printf("\x1B[1;31mError: Unable to read directory or directory does not exist\n\x1B[0m");
+        prestat = 'f';
         return;
     }
     struct dirent *file_or_subdir;

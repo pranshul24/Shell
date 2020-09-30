@@ -13,6 +13,7 @@ char *status_proc(int pd)
     if (fileptr == NULL)
     {
         return "perror";
+        prestat = 'f';
     }
     else if (fileptr != NULL)
     {
@@ -47,6 +48,7 @@ void print_jobs(char *argu)
     if (pt != NULL)
     {
         printf("\x1B[1;31mError : can't enter arguments for jobs command !!!\x1B[0m\n");
+        prestat = 'f';
         return;
     }
     else if (pt == NULL)
@@ -62,6 +64,7 @@ void print_jobs(char *argu)
         else if (total_back_process == 0)
         {
             printf("\x1B[1;31mNo background processes\n\x1B[0m");
+            prestat = 'f';
         }
     }
 }
@@ -72,6 +75,7 @@ void kjob(char *argu)
     if (pt == NULL)
     {
         printf("\x1B[1;31mError : enter arguments correctly !!!\x1B[0m\n");
+        prestat = 'f';
         return;
     }
     else if (pt != NULL)
@@ -83,6 +87,7 @@ void kjob(char *argu)
         if (pt == NULL)
         {
             printf("\x1B[1;31mError : enter arguments correctly !!!\x1B[0m\n");
+            prestat = 'f';
             return;
         }
         else if (pt != NULL)
@@ -95,6 +100,7 @@ void kjob(char *argu)
                 if (jobn == 0 || jobn > total_back_process)
                 {
                     printf("\x1B[1;31mError : enter job number correctly !!!\x1B[0m\n");
+                    prestat = 'f';
                     return;
                 }
                 else
@@ -103,12 +109,14 @@ void kjob(char *argu)
                     if (outc == -1)
                     {
                         perror("\x1B[1;31mErrror \x1B[0m");
+                        prestat = 'f';
                     }
                 }
             }
             else if (pt != NULL)
             {
                 printf("\x1B[1;31mError : specify correct number of arguments for kjob command !!!\x1B[0m\n");
+                prestat = 'f';
                 return;
             }
         }

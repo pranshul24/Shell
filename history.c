@@ -69,6 +69,7 @@ void write_his(char *add_on)
     if (fptr == NULL)
     {
         printf("Error opening the history_store.txt file ! Could not write the last instruction\n");
+        prestat = 'f';
         return;
     }
     if (hist_cnt < 20)
@@ -115,6 +116,7 @@ void history(char *argu)
     if (token != NULL)
     {
         printf("Sorry you can add at max 1 argument !!!");
+        prestat = 'f';
     }
     else
     {

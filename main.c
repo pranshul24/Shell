@@ -219,6 +219,7 @@ void call_command(int countsep, int if_pipe)
 }
 int main()
 {
+    prestat = 'n';
     spid = getpid();
     fg_pid = -1;
     total_back_process = 0;
@@ -247,6 +248,7 @@ int main()
         if (str != NULL)
         {
             int countsep = sep(str);
+            prestat = 's';
             call_command(countsep, 0);
         }
     }

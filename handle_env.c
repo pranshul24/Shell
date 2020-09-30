@@ -10,6 +10,7 @@ void set_env_var(char *argu)
     if (pt == NULL)
     {
         printf("\x1B[1;31mError : enter arguments !!!\x1B[0m\n");
+        prestat = 'f';
         return;
     }
     else if (pt != NULL)
@@ -22,6 +23,7 @@ void set_env_var(char *argu)
             if (k == -1)
             {
                 perror("\x1B[1;31mError \x1B[0m");
+                prestat = 'f';
                 return;
             }
         }
@@ -35,12 +37,14 @@ void set_env_var(char *argu)
                 if (k == -1)
                 {
                     perror("\x1B[1;31mError \x1B[0m");
+                    prestat = 'f';
                     return;
                 }
             }
             else if (pt != NULL)
             {
                 printf("\x1B[1;31mError : enter less than 3 arguments !!!\x1B[0m\n");
+                prestat = 'f';
                 return;
             }
         }
@@ -54,6 +58,7 @@ void unset_env_var(char *argu)
     if (pt == NULL)
     {
         printf("\x1B[1;31mError : enter the environment variable name !!!\x1B[0m\n");
+        prestat = 'f';
         return;
     }
     else if (pt != NULL)
@@ -66,12 +71,14 @@ void unset_env_var(char *argu)
             if (k == -1)
             {
                 perror("\x1B[1;31mError \x1B[0m");
+                prestat = 'f';
                 return;
             }
         }
         else if (pt != NULL)
         {
             printf("\x1B[1;31mError : enter less than 2 arguments !!!\x1B[0m\n");
+            prestat = 'f';
             return;
         }
     }

@@ -60,6 +60,7 @@ void pinfo(char *process_id)
     else if (k > 1)
     {
         printf("\x1B[1;31mToo many arguments(pids)! Enter no more than 1 pid at a time !\x1B[0m\n");
+        prestat = 'f';
         return;
     }
     else if (k == 1)
@@ -86,6 +87,7 @@ void pinfo(char *process_id)
         }
         else
             printf("\x1B[1;31mProcess with pid \x1B[1;34m%d\x1B[1;31m does not exist. Please check the pid!!!\n\x1B[0m", pid);
+        prestat = 'f';
     }
     else if (fileptr != NULL)
     {
@@ -116,7 +118,10 @@ void pinfo(char *process_id)
         printf("\x1B[1;35mMemory -- \x1B[0;32m%s\n", st2);
         long long ret = readlink(exe_file, exepath, 1000);
         if (ret == -1)
+        {
             printf("\x1B[1;31mExecutable Path Not Found\n");
+            prestat = 'f';
+        }
         else if (ret != -1)
         {
             exepath[ret] = '\0';

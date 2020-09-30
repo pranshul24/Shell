@@ -33,3 +33,4 @@ int fg_pid;
 int spid;
 char colonsep[100][1000];
 char pipe_args[100][1000];
+char prestat;

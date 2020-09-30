@@ -74,7 +74,18 @@ void prompt_stdout(char *home)
             else
             {
                 modify(cwdir);
-                printf("\x1B[1;34m<\x1B[1;33m%s\x1B[1;34m@\x1B[1;33m%s:\x1B[0;32m%s\x1B[1;34m>\x1B[0m", username, systemname, cwdir);
+                if (prestat == 'n')
+                {
+                    printf("\x1B[1;34m<\x1B[1;33m%s\x1B[1;34m@\x1B[1;33m%s:\x1B[0;32m%s\x1B[1;34m>\x1B[0m", username, systemname, cwdir);
+                }
+                else if (prestat == 'f')
+                {
+                    printf("\x1B[1;31m:'(\x1B[1;34m<\x1B[1;33m%s\x1B[1;34m@\x1B[1;33m%s:\x1B[0;32m%s\x1B[1;34m>\x1B[0m", username, systemname, cwdir);
+                }
+                else if (prestat == 's')
+                {
+                    printf("\x1B[1;32m:')\x1B[1;34m<\x1B[1;33m%s\x1B[1;34m@\x1B[1;33m%s:\x1B[0;32m%s\x1B[1;34m>\x1B[0m", username, systemname, cwdir);
+                }
             }
         }
     }
