@@ -22,11 +22,7 @@ int piping(char *command)
 
     for (int j = 0; j < tot; j++)
     {
-        if (pipe(parr) < 0)
-        {
-            perror("Could not create pipe.");
-            exit(1);
-        }
+        pipe(parr);
         newproc = fork();
         if (newproc == 0)
         {
@@ -35,7 +31,7 @@ int piping(char *command)
                 dup2(parr[1], 1);
             close(parr[0]);
             strcpy(colonsep[0], pipe_args[j]);
-            call_command(1);
+            call_command(1, 1);
             exit(2);
         }
         else if (newproc <= -1)

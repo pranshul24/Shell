@@ -1,20 +1,20 @@
-jobs
-5
-./a.out < 5
-jobs
-fg 1
-jobs
-./a.out > a.txt
-./a.out&
-10
-kjob 1 9
+ls 		| wc
+ls ~ |wc
+ls . | wc
+ls | wc
+cd ..
+ls | wc
 ls
-jobs
-./a.out < 10
-ls
-./a.out < a.txt
-./a.out < a.txt > b.txt&
-./a.out < a.txt > b.txt
-./a.out < a.txt &
-jobs
-./a.out<a.txt&
+ls |w c
+ls | wc
+cd
+lss | wc
+lss | xargs cat
+lss |
+lss
+lss |
+ls |
+ls ..
+ls 
+ls   
+ls |

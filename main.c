@@ -63,16 +63,19 @@ int check_piping(char *command)
     else
         return 0;
 }
-void call_command(int countsep)
+void call_command(int countsep, int if_pipe)
 {
     char *copy_ptr = (char *)malloc(sizeof(char) * 2000);
     char *copy_ptr2 = (char *)malloc(sizeof(char) * 2000);
+    char *copy_ptr3 = (char *)malloc(sizeof(char) * 2000);
     long long ii = 0;
     while (ii < countsep)
     {
+
         long long i;
         strcpy(copy_ptr, colonsep[ii]);
         strcpy(copy_ptr2, colonsep[ii]);
+        strcpy(copy_ptr3, colonsep[ii]);
         char *ptrs2 = strtok(copy_ptr2, " \t");
         char *command = (char *)malloc(sz * sizeof(char));
         char *argument = (char *)malloc(sz * sizeof(char));
@@ -83,7 +86,11 @@ void call_command(int countsep)
         }
         else
         {
-            write_his(copy_ptr);
+
+            if (if_pipe == 0)
+            {
+                write_his(copy_ptr);
+            }
             strcpy(command, ptrs2);
             ptrs2 = strtok(NULL, "");
             if (ptrs2 == NULL)
@@ -95,16 +102,17 @@ void call_command(int countsep)
                 strcpy(argument, ptrs2);
             }
         }
+
         int pipe_or_redirect = 0;
-        if (check_piping(copy_ptr))
+        if (check_piping(copy_ptr3))
         {
-            piping(copy_ptr);
             pipe_or_redirect = 1;
+            piping(copy_ptr3);
         }
-        if (check_redirection(copy_ptr))
+        if (check_redirection(copy_ptr3))
         {
-            redirection(copy_ptr);
             pipe_or_redirect = 1;
+            redirection(copy_ptr3);
         }
         if (pipe_or_redirect == 1)
         {
@@ -119,6 +127,7 @@ void call_command(int countsep)
         }
         else if (strcmp(command, "ls") == 0)
         {
+
             ls(argument);
             ii++;
             continue;
@@ -238,7 +247,7 @@ int main()
         if (str != NULL)
         {
             int countsep = sep(str);
-            call_command(countsep);
+            call_command(countsep, 0);
         }
     }
     return 0;

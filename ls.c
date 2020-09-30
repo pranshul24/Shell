@@ -104,10 +104,12 @@ void print_listed_ls(char *filenameorsubdir, char *filepath)
 }
 void list_with_l(char *temdir2, ll hidden)
 {
+
     char *filenameorsubdir = (char *)malloc(sz4 * sizeof(char));
     char *filenameorsubdir_appended_on_dir = (char *)malloc(sz4 * sizeof(char));
     DIR *directory;
     directory = opendir(temdir2);
+
     if (directory == NULL)
     {
         printf("\x1B[1;31mError: Unable to read directory or directory does not exist\n\x1B[0m");
@@ -135,6 +137,7 @@ void list_with_l(char *temdir2, ll hidden)
 }
 void list(char *temdir, ll hidden, ll detail)
 {
+
     if (detail == 1)
     {
         list_with_l(temdir, hidden);
@@ -166,9 +169,8 @@ void list(char *temdir, ll hidden, ll detail)
 }
 void ls(char *argument)
 {
+
     ll k = 0;
-    if (argument != NULL)
-        strlen(argument);
     ll i, j;
     char del[] = " \t";
     char *ptr;
@@ -177,37 +179,42 @@ void ls(char *argument)
     char flag_arr[50][100], dir_arr[25][100];
     ll fk = 0, dk = 0;
     ll hidden = 0, detail = 0;
-    while (ptr != NULL)
+    if (argument != NULL)
     {
-        if (ptr[0] == '-')
+        while (ptr != NULL)
         {
-            strcpy(flag_arr[fk], ptr);
-            fk++;
+            if (ptr[0] == '-')
+            {
+                strcpy(flag_arr[fk], ptr);
+                fk++;
+            }
+            else
+            {
+                strcpy(dir_arr[dk], ptr);
+                dk++;
+            }
+            ptr = strtok(NULL, del);
         }
-        else
+        for (i = 0; i < fk; i++)
         {
-            strcpy(dir_arr[dk], ptr);
-            dk++;
-        }
-        ptr = strtok(NULL, del);
-    }
-    for (i = 0; i < fk; i++)
-    {
-        for (j = 1; j < strlen(flag_arr[i]); j++)
-        {
-            if (flag_arr[i][j] == 'l')
-                detail = 1;
-            if (flag_arr[i][j] == 'a')
-                hidden = 1;
+            for (j = 1; j < strlen(flag_arr[i]); j++)
+            {
+                if (flag_arr[i][j] == 'l')
+                    detail = 1;
+                if (flag_arr[i][j] == 'a')
+                    hidden = 1;
+                if (detail == 1 && hidden == 1)
+                    break;
+            }
             if (detail == 1 && hidden == 1)
                 break;
         }
-        if (detail == 1 && hidden == 1)
-            break;
     }
     if (dk == 0)
     {
-        strcpy(dir_arr[0], ".");
+        char *cwdir = (char *)malloc(1000 * sizeof(char));
+        getcwd(cwdir, 1000 - 5);
+        strcpy(dir_arr[0], cwdir);
         dk = 1;
     }
     for (i = 0; i < dk; i++)
