@@ -1,20 +1,20 @@
-jobs
-overkill
-emacs&
-overkill
-emmmaa
-emacss
-emacsss
-emacss
-aasd
-dfssdf
-sdf
+cd
+pwd
+pinfo dfg
+ls 
+ pwd 23323 
+ emacs
 emacs
-jobs
-jobs fd
-fg 1
-emmma&
-emacs
-jobs
-overkill
-emacs&
+ls 
+ pwd fdf
+ emacs
+ls 
+ cd ... 
+ pinfo
+ls | wc
+ls | wc| wc
+ls | wc|ds
+ls | ds
+lss | wc
+ls | ds | wc
+ls | ds

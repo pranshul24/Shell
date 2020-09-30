@@ -9,7 +9,6 @@ void exit_fg(int signum)
     if (p < 0)
     {
         perror("\x1B[1;31mError\x1B[0m");
-        prestat = 'f';
     }
     else if (p != spid)
         return;

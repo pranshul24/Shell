@@ -75,7 +75,7 @@ void run(char *args, int back_g)
             }
             else
             {
-                exit(1);
+                exit(0);
             }
         }
         else if (pid == -1)
@@ -121,11 +121,7 @@ void run(char *args, int back_g)
                 total_back_process++;
             }
             fg_pid = -1;
-            if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
-            {
-                return;
-            }
-            else
+            if (!(WIFEXITED(status) && WEXITSTATUS(status) == 0))
             {
                 prestat = 'f';
             }

@@ -16,7 +16,6 @@
 #include "manage_signal.h"
 #include "io_redirection.h"
 #include "pipe.h"
-//#include "main.h"
 #define ll long long
 ll k = 1;
 size_t sz = 1010;
@@ -71,7 +70,7 @@ void call_command(int countsep, int if_pipe)
     long long ii = 0;
     while (ii < countsep)
     {
-
+        prestat = 's';
         long long i;
         strcpy(copy_ptr, colonsep[ii]);
         strcpy(copy_ptr2, colonsep[ii]);

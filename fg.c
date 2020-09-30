@@ -69,11 +69,7 @@ void fg(char *argu)
                 total_back_process++;
                 prestat = 'f';
             }
-            if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
-            {
-                return;
-            }
-            else
+            if (!(WIFEXITED(status) && WEXITSTATUS(status) == 0))
             {
                 prestat = 'f';
             }
