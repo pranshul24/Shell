@@ -81,8 +81,5 @@
 - **bg.h** : contains the declaration of functions used in bg.c
 - **bg.h** : contains the implementation of `bg` command 
 
-## Important Point on `exit codes`
-
-The exit code for a currently running foreground process when `Ctrl+C` is pressed is according to exit status received when child process is killed .
 
 ---
