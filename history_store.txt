@@ -1,20 +1,20 @@
-cd $ $ ls
-cd 
-cd .. $ ls
-cd .. 
-cd .. @ ls
-cd .. 
- ls
-cd -
-ls
-cd
-cd .. @ ls
-cd .. 
- ls
-cd
-cd ffd @ pwd 123 $ pwd
-cd ffd 
- pwd
-ls | wc @ pwd $ pwd 
-ls | wc 
- pwd 
+cat < ls.h >> a.txt
+cat < ls.h < ls.c > a.txt
+cat < ls.h | wc > a.txt
+grep h ls.h > a.txt
+grep h ls.h | wc -l > a.txt
+ wc -l 
+cat main.c | wc
+more main.c | wc
+sort < gfh.txt
+sort < gfh.txt > a.txt
+diff ls.h ls.c > a.txt
+diff ls.h ls.c 
+nightswatch -n 2 interrupt
+nightswatch -n 2 interrupt > a.txt
+nightswatch -n 1 interrupt > a.txt
+jobs
+emacs
+emacs&
+quit
+overkill

@@ -61,11 +61,28 @@
     * The string is as it is written(that is tabs and spaces are left as it is) in the history_store.txt.
     * If there are multiple commands separated by **;** then each of them is stored in history as a separate command one after the other in the order they appear.
 
+### Files added in Assignment-3
+- **manage_jobs.h** : contains the declaration of functions used in manage_jobs.c
+- **manage_jobs.c** : contains the implementation of `jobs` and `kjob` commands . In `jobs` command if there is no background process that is displayed . 
+- **manage_signal.h** : contains the declaration of functions used in manage_signal.c
+- **manage_signal.c** : contains the signal handlers for signals `SIGINT` `SIGTSTP` `SIGCHLD`
+- **overkill.h** : contains the declaration of functions used in overkill.c
+- **overkill.c** : contains the implementation of `overkill` command . If there is no background process already then it is displayed .
+- **pipe.h** : contains the declaration of functions used in pipe.c
+- **pipe.c** : contains functions to implement piping . It is checked in the main.c file if the command contains `|` , if present then piping is executed by using functions in pipe.c
+- **logical_chain.h** : contains the declaration of functions used in logical_chain.c
+- **logical_chain.c** : contains functions to implement logical chaining of commands using operators `@`  (**logical AND**) and `$` (**logical OR**) . Error is displayed if the number of operators is not 1 less than the number of commands in the chain . Chain is executed from left to right along with short circuit if the next command exit status is not required .
+- **io_redirection.h** : contains the declaration of functions used in io_redirection.c
+- **io_redirection.c** : contains functions to implement redirection of input output . It is checked in the main.c file if the command contains `>` `>>` `<` , if present then IO redirection is executed by using functions in io_redirection.c
+- **handle_env.h** : contains the declaration of functions used in handle_env.c
+- **handle_env.c** : contains implementation of `setenv` and `unsetenv` commands that are used to set and unset environment variables for the shell .
+- **fg.h** : contains the declaration of functions used in fg.c
+- **fg.c** : contains the implementation of `fg` command
+- **bg.h** : contains the declaration of functions used in bg.c
+- **bg.h** : contains the implementation of `bg` command 
 
+## Important Point on `exit codes`
 
-
-
-
-
+The exit code for a currently running foreground process when `Ctrl+C` is pressed is according to exit status received when child process is killed .
 
 ---
