@@ -1,20 +1,20 @@
-cd ... 
- pwd 
- cd ...
-ls $ echo hi $ cd ..
-ls 
-quit
-cd .. $ pwd
-cd .. 
-cd .. $ pwd
-cd .. $ pwd $ pinfo
-cd .. 
-cd @ pwd $ pinfo
+cd $ $ ls
 cd 
- pwd 
-cd .. @ pinfo @ pinfo > a.txt $ pwd
+cd .. $ ls
 cd .. 
- pinfo 
- pinfo > a.txt 
-code a.txt
+cd .. @ ls
+cd .. 
+ ls
+cd -
 ls
+cd
+cd .. @ ls
+cd .. 
+ ls
+cd
+cd ffd @ pwd 123 $ pwd
+cd ffd 
+ pwd
+ls | wc @ pwd $ pwd 
+ls | wc 
+ pwd 
