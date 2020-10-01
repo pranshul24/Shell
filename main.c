@@ -16,6 +16,7 @@
 #include "manage_signal.h"
 #include "io_redirection.h"
 #include "pipe.h"
+#include "logical_chain.h"
 #define ll long long
 ll k = 1;
 size_t sz = 1010;
@@ -53,7 +54,19 @@ int check_redirection(char *command)
     else
         return 0;
 }
-
+int check_chain(char *command)
+{
+    char *ifand = strstr(command, "@");
+    char *ifor = strstr(command, "$");
+    if (ifand != NULL || ifor != NULL)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
 int check_piping(char *command)
 {
     char *is_pipe = strstr(command, "|");
@@ -101,8 +114,12 @@ void call_command(int countsep, int if_pipe)
                 strcpy(argument, ptrs2);
             }
         }
-
-        int pipe_or_redirect = 0;
+        if (check_chain(copy_ptr3) == 1)
+        {
+            chain(copy_ptr3);
+            ii++;
+            continue;
+        }
         if (check_piping(copy_ptr3))
         {
             piping(copy_ptr3);

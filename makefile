@@ -1,2 +1,2 @@
 main:
-	gcc -g main.c prompt.c changedir.c ls.c echo.c pwd.c pinfo.c run.c history.c nightswatch.c handle_env.c manage_jobs.c bg.c overkill.c fg.c manage_signal.c io_redirection.c pipe.c
+	gcc -g main.c prompt.c changedir.c ls.c echo.c pwd.c pinfo.c run.c history.c nightswatch.c handle_env.c manage_jobs.c bg.c overkill.c fg.c manage_signal.c io_redirection.c pipe.c logical_chain.c
