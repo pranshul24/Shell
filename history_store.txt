@@ -1,20 +1,20 @@
-echo hi 
- emacs 
- pwd
-echo hi @ emacs
-echo hi 
- emacs
-ls
-jobs
-overkill @ pwd
-overkill 
- pwd
-overkill
-emacs
-overkill
-cd ... 
- ls
-cd ... $ pwd 
 cd ... 
  pwd 
  cd ...
+ls $ echo hi $ cd ..
+ls 
+quit
+cd .. $ pwd
+cd .. 
+cd .. $ pwd
+cd .. $ pwd $ pinfo
+cd .. 
+cd @ pwd $ pinfo
+cd 
+ pwd 
+cd .. @ pinfo @ pinfo > a.txt $ pwd
+cd .. 
+ pinfo 
+ pinfo > a.txt 
+code a.txt
+ls

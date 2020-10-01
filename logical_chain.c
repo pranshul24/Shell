@@ -29,9 +29,9 @@ void chain(char *str)
 {
     int tota = numb_and(str);
     int flag_and = 0, i;
-    for (i = 0; i < tota; i++)
+    if (tota == 1)
     {
-        int toto = numb_or(and_args[i]);
+        int toto = numb_or(str);
         int j;
         for (j = 0; j < toto; j++)
         {
@@ -42,9 +42,26 @@ void chain(char *str)
                 break;
             }
         }
-        if (prestat == 'f')
+    }
+    else
+    {
+        for (i = 0; i < tota; i++)
         {
-            break;
+            int toto = numb_or(and_args[i]);
+            int j;
+            for (j = 0; j < toto; j++)
+            {
+                strcpy(colonsep[0], or_args[j]);
+                call_command(1, 0);
+                if (prestat == 's')
+                {
+                    break;
+                }
+            }
+            if (prestat == 'f')
+            {
+                break;
+            }
         }
     }
 }
