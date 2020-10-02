@@ -1,20 +1,20 @@
-cd ../../..
-cd -
-cd
-cd -
-cd
-cd -
-dd
-./a.out
-jobs
+ls | wc
+ks | wc
+ls | we
+
+ls | weew
 emacs
-emacs &
-emacs
-jobs
-fg 1
-jobs
-quit
-emacs
-fg 1
-cd ..
-cd 
+ls | wew
+ls | wewe
+ls | we
+ls | sc
+ls | wc
+ls | wewe
+ls | wc
+ls | we
+ls | wewe
+ls | wewe | wc
+ls | wew
+ls | wc
+ls | wee |wc
+ls | wewe | wc
