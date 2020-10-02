@@ -1,20 +1,20 @@
-cat < ls.h >> a.txt
-cat < ls.h < ls.c > a.txt
-cat < ls.h | wc > a.txt
-grep h ls.h > a.txt
-grep h ls.h | wc -l > a.txt
- wc -l 
-cat main.c | wc
-more main.c | wc
-sort < gfh.txt
-sort < gfh.txt > a.txt
-diff ls.h ls.c > a.txt
-diff ls.h ls.c 
-nightswatch -n 2 interrupt
-nightswatch -n 2 interrupt > a.txt
-nightswatch -n 1 interrupt > a.txt
+cd ../../..
+cd -
+cd
+cd -
+cd
+cd -
+dd
+./a.out
 jobs
 emacs
-emacs&
+emacs &
+emacs
+jobs
+fg 1
+jobs
 quit
-overkill
+emacs
+fg 1
+cd ..
+cd 

@@ -6,29 +6,29 @@ char stat_string[200];
 void exit_fg(int signum)
 {
     pid_t p = getpid();
-    if (p < 0)
+    if (p != spid)
     {
-        perror("\x1B[1;31mError\x1B[0m");
-    }
-    else if (p != spid)
         return;
-    if (fg_pid != -1)
+    }
+    else if (fg_pid != -1)
+    {
         kill(fg_pid, SIGINT);
+    }
     signal(SIGINT, exit_fg);
     return;
 }
 void to_bg(int signum)
 {
     pid_t p = getpid();
-    if (p < 0)
+    if (p != spid)
     {
-        prestat = 'f';
-        perror("\x1B[1;31mError\x1B[0m");
-    }
-    else if (p != spid)
         return;
-    if (fg_pid != -1)
-        raise(SIGTSTP);
+    }
+    else if (fg_pid != -1)
+    {
+        kill(fg_pid, SIGTSTP);
+        //raise(SIGTSTP);
+    }
     return;
 }
 void end(int sig_num)

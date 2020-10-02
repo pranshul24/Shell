@@ -37,22 +37,18 @@ void exit_fun()
     printf("\n\t\t\t\t\t\x1B[1;35mGoodBye ! Hopefully see you again !\n\n");
     exit(0);
 }
-int check_redirection(char *command)
+int check_for_redirection(char *command)
 {
-    char *out = strstr(command, ">");
-    char *in = strstr(command, "<");
-
-    if ((out != NULL) && (in != NULL))
-        return 3;
-
-    else if (out != NULL)
-        return 2;
-
-    else if (in != NULL)
-        return 1;
-
-    else
-        return 0;
+    int i, n = strlen(command), fl = 0;
+    for (i = 0; i < n; i++)
+    {
+        if (command[i] == '<' || command[i] == '>')
+        {
+            fl = 1;
+            break;
+        }
+    }
+    return fl;
 }
 int check_chain(char *command)
 {
@@ -67,13 +63,18 @@ int check_chain(char *command)
         return 0;
     }
 }
-int check_piping(char *command)
+int check_for_piping(char *command)
 {
-    char *is_pipe = strstr(command, "|");
-    if (is_pipe != NULL)
-        return 1;
-    else
-        return 0;
+    int i, n = strlen(command), fl = 0;
+    for (i = 0; i < n; i++)
+    {
+        if (command[i] == '|')
+        {
+            fl = 1;
+            break;
+        }
+    }
+    return fl;
 }
 void call_command(int countsep, int if_pipe)
 {
@@ -120,13 +121,13 @@ void call_command(int countsep, int if_pipe)
             ii++;
             continue;
         }
-        if (check_piping(copy_ptr3))
+        if (check_for_piping(copy_ptr3) == 1)
         {
             piping(copy_ptr3);
             ii++;
             continue;
         }
-        if (check_redirection(copy_ptr3))
+        if (check_for_redirection(copy_ptr3) == 1)
         {
             redirection(copy_ptr3);
             ii++;

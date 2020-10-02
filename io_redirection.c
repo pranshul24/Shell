@@ -1,154 +1,173 @@
 #include "headers.h"
 #include "io_redirection.h"
 #include "main.h"
-int isfile(char *path)
+int check_file(char *path)
 {
     struct stat f;
-    if (stat(path, &f) == 0 && !S_ISDIR(f.st_mode))
+    if (stat(path, &f) == 0 && S_ISDIR(f.st_mode) == 0) //exists and not a directory
+    {
         return 1;
+    }
     else
+    {
         return 0;
+    }
 }
-
+int create_if_not(char *str, int type)
+{
+    int fd;
+    if (type == 2)
+    {
+        fd = open(str, O_WRONLY | O_CREAT | O_APPEND, 0644);
+        if (fd == -1)
+        {
+            return -1;
+        }
+    }
+    else
+    {
+        fd = open(str, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+        if (fd == -1)
+        {
+            return -1;
+        }
+    }
+    return fd;
+}
+int check_inpred(char *str)
+{
+    char *ptr = (char *)malloc(1000 * sizeof(char));
+    ptr = strstr(str, "<");
+    int fl = 1;
+    if (ptr == NULL)
+    {
+        fl = 0;
+    }
+    return fl;
+}
+int check_outred(char *str)
+{
+    char *ptr = (char *)malloc(1000 * sizeof(char));
+    ptr = strstr(str, ">");
+    int fl = 0;
+    if (ptr != NULL)
+    {
+        if (strstr(str, ">>") != NULL)
+        {
+            fl = 2; // 2 for append
+        }
+        else
+        {
+            fl = 1;
+        }
+    }
+    return fl;
+}
 void redirection(char *command)
 {
-
-    int saved_stdout = dup(STDOUT_FILENO);
-    int saved_stdin = dup(STDIN_FILENO);
-    int status;
-
-    char *output[2], *input[2];
-    char *out_file = NULL;
-    char *in_file = NULL;
-
-    char *inp = strstr(command, "<");
-    int in = !(inp == NULL);
-    //printf(" int is %d", in);
-    int out_type = 0;
-    char *out = strstr(command, ">>");
-
-    if (out != NULL)
-        out_type = 2;
-
-    else
+    int org_stdout = dup(1);
+    int org_stdin = dup(0);
+    int status, in, out;
+    char *pt = (char *)malloc(1000 * sizeof(char));
+    in = check_inpred(command);
+    out = check_outred(command);
+    char *copy_command = (char *)malloc(1000 * sizeof(char));
+    char *copy_command2 = (char *)malloc(1000 * sizeof(char));
+    char *copy_command3 = (char *)malloc(1000 * sizeof(char));
+    char *outputf = (char *)malloc(1000 * sizeof(char));
+    char *inputf = (char *)malloc(1000 * sizeof(char));
+    char *fin_outf = (char *)malloc(1000 * sizeof(char));
+    char *fin_inf = (char *)malloc(1000 * sizeof(char));
+    char *com = (char *)malloc(1000 * sizeof(char));
+    strcpy(copy_command, command);
+    strcpy(copy_command2, command);
+    strcpy(copy_command3, copy_command2);
+    pt = strtok(copy_command2, "><");
+    strcpy(com, pt);
+    if (in == 1)
     {
-        out = strstr(command, ">");
-        if (out != NULL)
-            out_type = 1;
-    }
-
-    output[0] = &command[0];
-
-    if (out_type)
-    {
-        output[0] = strtok(command, ">");
-        output[1] = strtok(NULL, ">");
-        out_file = strtok(output[1], " \r\t\n");
-    }
-
-    input[0] = output[0];
-    if (in)
-    {
-        input[0] = strtok(input[0], "<");
-        input[1] = strtok(NULL, "<");
-    }
-
-    char **args = (char **)malloc(sizeof(char *) * 300);
-    int no_args = 0;
-
-    if (in)
-    {
-        if (input[1] == NULL)
+        pt = strtok(copy_command3, "<");
+        pt = strtok(NULL, ">");
+        strcpy(inputf, pt);
+        fin_inf = strtok(inputf, " \t");
+        if (fin_inf == NULL)
         {
-            printf("Specify file name for input\n");
+            printf("\x1B[1;31mPlease specify the name of the file for input\n\x1B[1;0m");
             prestat = 'f';
             return;
         }
-
-        //printf("\n fk no %s\n",input[1]);
-        in_file = strtok(input[1], " \n\r\t");
-        if (!isfile(in_file))
+        else if (check_file(fin_inf) == 0)
         {
-            printf("File does not exist\n");
+            printf("\x1B[1;31mInput file does not exist\n\x1B[1;0m");
             prestat = 'f';
             return;
         }
     }
     char *send = (char *)malloc(1000 * sizeof(char));
-    strcpy(send, input[0]);
-    input[0] = strtok(input[0], " \n\r\t");
-
-    while (input[0] != NULL)
+    strcpy(send, com);
+    if (out == 1 || out == 2)
     {
-        args[no_args] = (char *)malloc(sizeof(char) * strlen(input[0]) + 10);
-        strcpy(args[no_args], input[0]);
-        input[0] = strtok(NULL, " \n\t\r");
-        no_args++;
-    }
-
-    args[no_args] = NULL;
-
-    if (out_type)
-    {
-        if (out_file == NULL)
+        pt = strtok(command, ">");
+        pt = strtok(NULL, "<");
+        strcpy(outputf, pt);
+        fin_outf = strtok(outputf, " \t");
+        if (fin_outf == NULL)
         {
-            printf("Enter output file\n");
+            printf("\x1B[1;31mEnter output file\n\x1B[1;0m");
             prestat = 'f';
             return;
         }
     }
-
     pid_t pid = fork();
-    if (pid < 0)
+    if (pid == -1)
     {
-        perror("Error in forking");
+        perror("\x1B[1;31mError \x1B[1;0m");
         prestat = 'f';
         return;
     }
-
-    if (pid == 0)
+    else if (pid == 0)
     {
-        if (in)
+        if (in == 1)
         {
-            int fd_in = open(in_file, O_RDONLY);
-            if (fd_in < 0)
+            int fdin = open(fin_inf, O_RDONLY);
+            if (fdin == -1)
             {
-                perror("Input redirection");
+                printf("\x1B[1;31mError reading the input file\n\x1B[1;0m");
                 prestat = 'f';
                 return;
             }
-
-            dup2(fd_in, 0);
-            close(fd_in);
+            else if (fdin >= 0)
+            {
+                dup2(fdin, 0);
+                close(fdin);
+            }
         }
-
-        if (out_type)
+        if (out == 1 || out == 2)
         {
-            int fd_out;
-            if (out_type == 1)
-                fd_out = open(out_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-            else if (out_type == 2)
-                fd_out = open(out_file, O_WRONLY | O_CREAT | O_APPEND, 0644);
-            if (fd_out < 0)
+            int fdout;
+            fdout = create_if_not(fin_outf, out);
+            if (fdout == -1)
             {
-                perror("Output Redirection");
+                printf("\x1B[1;31mError writing to the output file\n\x1B[1;0m");
                 prestat = 'f';
                 return;
             }
-            dup2(fd_out, 1);
-            close(fd_out);
+            else if (fdout >= 0)
+            {
+                dup2(fdout, 1);
+                close(fdout);
+            }
         }
         int y = 0;
         strcpy(colonsep[y], send);
-        call_command(1, 0);
-        dup2(saved_stdin, 0);
-        close(saved_stdin);
-
-        dup2(saved_stdout, 1);
-        close(saved_stdout);
+        call_command(1, 1);
+        dup2(org_stdin, 0);
+        close(org_stdin);
+        dup2(org_stdout, 1);
+        close(org_stdout);
         exit(0);
     }
-    else
+    else if (pid >= 1)
     {
         waitpid(pid, &status, 0);
     }
